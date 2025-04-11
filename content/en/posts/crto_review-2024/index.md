@@ -4,8 +4,8 @@ date = 2025-04-11T10:46:43-04:00
 draft = false
 +++
 
-# Review of Zero Point Security's Red Team Ops Course
-
+<h1 style="text-align:center">Review of Zero Point Security's Red Team Ops Course</h1>
+<br>
 <div style="text-align:center"><img src="img3.png"></div>
 
 ## Overview
