@@ -4,6 +4,10 @@ date = 2025-04-11T10:46:43-04:00
 draft = false
 +++
 
+# Review of Zero Point Security's Red Team Ops Course
+
+<div style="text-align:center"><img src="img3.png"></div>
+
 ## Overview
 Zero Point Security's Red Team Ops course is an excellent course for those looking to up their skills to that of a red teamer. It serves as an entry point for those looking to get familiar with the industry's (most?) popular C2 framework, Cobalt Strike (CS).
 
