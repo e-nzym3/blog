@@ -4,13 +4,10 @@ date = 2025-04-12T19:50:05-04:00
 draft = false
 +++
 
-<h1 style="text-align:center">>oT Series</h1>
-<h1 style="text-align:center">Hacking on a Budget</h1>
-<h1 style="text-align:center">Cheap Fun with a CenturyLink PK5001A Router</h1>
-
+<h1 style="text-align:center">IoT Series: Hacking on a Budget</h1>
+<h2 style="text-align:center">Cheap Fun with a CenturyLink PK5001A Router</h2>
+<br>
 <div style="text-align:center"><img src="img1.png"></div>
-
-<hr style="height: 2px">
 
 ## Intro
 Welcome to a new series I will be starting as I practice and learn the craft of IoT hacking. It's been a long time coming for me. I always entertained the idea of getting into hardware hacking as I love the tactile feel of it all. Ever since I was a kid I used to love taking apart old electronics. I remember I had a drawer full of "garbage" electronics that I would salvage from breaking down old printers and mobos. Had a large collection of "barrels" (as I used to call them), nowadays commonly known as capacitors, which I sheered off with pliers. It was a great activity for an impatient, ADHD young me.
@@ -31,7 +28,9 @@ Having unscrewed a handful of screws, the case popped open with ease thanks to m
 
 <div style="text-align:center"><img src="img3.png"></div>
 
-The only thing left was to probe the pins with my multimeter to determine: the ground pin, transmit pin (TX), and receive pin (RX). If you are unfamiliar with the UART protocol, I recommend you ask your favorite AI or read through this article: [UART basics](https://www.circuitbasics.com/basics-uart-communication/). In essence, you can find the ground pin by probing around pads and pins on the board while having your multimeter set to continuity testing. If you have a multimeter that beeps when continuity is detected, that'll tell you when you found your ground pin. Most of the time, you can find ground contact on certain shielding for chips, or clearly designated "GND" contacts on the board. Through an educated guess, I found the ground pin to be the pin that was separated from the other 3 pins (the top pin as pictured). To find the transmit pin, I read the voltage of the remaining three pins and looked for one that flactuated between 3.3V and a lower voltage, jumping back and forth. This effectively told me that there's data being sent on the pin, thus making it the TX pin. The TX pin ended up being the second pin from the bottom as pictured above. For the RX pin, I made an educated guess and figured it would be the third pin from the bottom, as the VCC 3v pin usually resides on the edges of t he pinout, and I was correct.
+The only thing left was to probe the pins with my multimeter to determine: the ground pin, transmit pin (TX), and receive pin (RX). If you are unfamiliar with the UART protocol, I recommend you ask your favorite AI or read through this article: [UART basics](https://www.circuitbasics.com/basics-uart-communication/). In essence, you can find the ground pin by probing around pads and pins on the board while having your multimeter set to continuity testing. If you have a multimeter that beeps when continuity is detected, that'll tell you when you found your ground pin. Most of the time, you can find ground contact on certain shielding for chips, or clearly designated "GND" contacts on the board. 
+
+Through an educated guess, I found the ground pin to be the pin that was separated from the other 3 pins (the top pin as pictured). To find the transmit pin, I read the voltage of the remaining three pins and looked for one that flactuated between 3.3V and a lower voltage, jumping back and forth. This effectively told me that there's data being sent on the pin, thus making it the TX pin. The TX pin ended up being the second pin from the bottom as pictured above. For the RX pin, I made an educated guess and figured it would be the third pin from the bottom, as the VCC 3v pin usually resides on the edges of t he pinout, and I was correct.
 
 ## UART Access
 Having identified my UART pins, I plugged them into my Flipper's GPIO pins (reversing TX and RX with RX and TX on the Flipper), and I used the flipper as my serial bridge. I assumed a baud rate of 112500 and sure enough, I saw data. At this point, I powercycled the router to catch the whole boot sequence of the router. I won't include the full dump here, but I'll refrence to it when pertinent to explain what I'm talking about.
@@ -62,7 +61,9 @@ tftpboot- boot image via network using TFTP protocol
 upgrade - forward/backward copy memory to pre-defined flash location
 ```
 
-The goal at this point was to gain access to the firmware by dumping it. I haven't done many firmware dumps through UART at this point, but based on my assessment of these commands, it appeard that the key command to dump data was `md`. The `printenv` command also came in handy as it gave me information about the commands being executed at boot. I tried using the `md` command several times to see if I can extract any data, but every time I did so, the device would simply reboot. At first I thought there may have been something corrupted on the device, but after playing around with it more, I found that the device reboot seemed to coincide with exceptions caused by the commands I was running. For instance, executing the `md` command on a small section of RAM, the data would print with no problem. But if I tried reading larger chunks of data, or trying to read from unavailable RAM addresses, the device would reboot.
+The goal at this point was to gain access to the firmware by dumping it. I haven't done many firmware dumps through UART at this point, but based on my assessment of these commands, it appeard that the key command to dump data was `md`. The `printenv` command also came in handy as it gave me information about the commands being executed at boot. I tried using the `md` command several times to see if I can extract any data, but every time I did so, the device would simply reboot. 
+
+At first I thought there may have been something corrupted on the device, but after playing around with it more, I found that the device reboot seemed to coincide with exceptions caused by the commands I was running. For instance, executing the `md` command on a small section of RAM, the data would print with no problem. But if I tried reading larger chunks of data, or trying to read from unavailable RAM addresses, the device would reboot.
 
 ## Memory Dumping
 Having identified the issue for the device reboots, I proceeded to dump data. The boot log presented the memory addresses of each parition:
@@ -145,7 +146,9 @@ With both halves dumped, I cleaned up the beginning and end of the files so that
 Then I combined them into `rootfs1.dump`.
 
 ### Hex to Bin
-To transform the hext into binary data, I tried using Matt Brown's `parse-uboot-dump.py` tool (found [here](https://github.com/nmatt0/firmwaretools/tree/master)) but the tool did not work as expected. I'll spare you the details, but in essence, my dump was slightly corrupted where not all lines were in the same `md.b` format. Picocom must have glitched out a few times during the dump process. As such, I set off to write a new tool to remedy all my issues, and hopefully help you in the future as well: [uboot-md2bin](https://github.com/e-nzym3/uboot-md2bin). I took inspiration from Matt's tool in terms of what it did (cleaned up the hex output, stripped it to just hex bytes, and translated the hex into bin), but I added several error checks that are performed prior to processing the file. This allowed me to ensure my large dumps (hehe...) were reliable for further processing. After running `uboot-md2bin` on the rootfs1 dump, I found that there were several places where the dump was missing data. 
+To transform the hext into binary data, I tried using Matt Brown's `parse-uboot-dump.py` tool (found [here](https://github.com/nmatt0/firmwaretools/tree/master)) but the tool did not work as expected. I'll spare you the details, but in essence, my dump was slightly corrupted where not all lines were in the same `md.b` format. Picocom must have glitched out a few times during the dump process. 
+
+To remedy this, I set off to write a new tool, which will hopefully help you in the future as well: [uboot-md2bin](https://github.com/e-nzym3/uboot-md2bin). I took inspiration from Matt's tool in terms of what it did (cleaned up the hex output, stripped it to just hex bytes, and translated the hex into bin), but I added several error checks that are performed prior to processing the file. This allowed me to ensure my large dumps (hehe...) were reliable for further processing. After running `uboot-md2bin` on the rootfs1 dump, I found that there were several places where the dump was missing data. 
 
 <div style="text-align:center"><img src="img4.png"></div>
 
@@ -185,7 +188,7 @@ I saved the dump, reran the tool, found the next broken portion, fixed it, and s
 
 Eventually, running `uboot-md2bin` completed successfully without any issues:
 ```
-uboot-md2bin rootfs1-1.dump 
+# uboot-md2bin rootfs1-1.dump 
 
 ╻━━    ┳┳  ┳┓            ┓┏┓┓ •      ━━╻
 ┃━━━━  ┃┃━━┣┫┏┓┏┓╋   ┏┳┓┏┫┏┛┣┓┓┏┓  ━━━━┃
@@ -202,7 +205,7 @@ Now it was time to binwalk!
 ### Rootfs1 Analysis
 Binwalk detected a whole bunch of things within the dump, so I slapped on `-e` to see what's inside:
 ```
-❯ binwalk -e rootfs1-1_output.bin
+# binwalk -e rootfs1-1_output.bin
 
 DECIMAL       HEXADECIMAL     DESCRIPTION
 --------------------------------------------------------------------------------
@@ -272,6 +275,8 @@ Mar 16 04:20:24 ccc_be: cccRdmSearchObjNodeByName(): cannot find
 [
 I attempted to log in with these credentials to the router, to no avail. Furthermore, the router's boot sequence also mentions updates to passwords of `root` and `admin_404A03SSH`: 
 ```
+<...snip...>
+
 socket: Address family not supported by protocol
 socket: Address family not supported by protocol
 Password for 'root' changed
@@ -280,6 +285,8 @@ adduser: /root: File exists
 Password for 'admin_404A03SSH' changed
 DSL[00]: ERROR - Function is only available in the SHOWTIME!
 DSL[00]: ERROR - Function is on
+
+<...snip...>
 ```
 
 While the rootfs dumps did not contain any mentions of such actions against these two accounts, it led me to believe there may be a way to reveal the actual passwords being set for both of these accounts with a little bit of extra digging. Ultimately, I came out empty handed. After hours of digging through the dumps, I started to lose hope, but I remembered something that I should have checked in the first place: THE WEB PORTAL! 
@@ -433,7 +440,7 @@ WLAN        lost+found  tr069
 HA! I caught the router with its pants down and could now reset the root password to whatever I wished. Great success!
 
 ## Closing Thoughts
-I learned quite a few lessons here, some that I probably should have already known, such as checking the router's portal first. I was too eager to go in and dump the firmware through UART that I forgot that basic step. But nonetheless, doing so led me on a path to learn some very interesting memory interaction methods and to develop the [uboot-md2bin](https://github.com/e-nzym3/uboot-md2bin) tool. Can't complain. As the famous Bob Ross always said, "Happy Accident".
+I learned quite a few lessons here, some that I probably should have already known, such as checking the router's portal first. I was too eager to go in and dump the firmware through UART that I forgot that basic step. But nonetheless, doing so led me on a path to learn some very interesting memory interaction methods and to develop the [uboot-md2bin](https://github.com/e-nzym3/uboot-md2bin) tool. Can't complain. As the famous Bob Ross always said, "a happy accident".
 
 As I've mentioned before, I'll be posting more of my IoT adventures, especially with the remaining three routers I snagged from the thirft shop. After all, this was a LOT of value for a $1:
 
