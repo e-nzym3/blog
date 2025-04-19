@@ -8,9 +8,8 @@ draft = false
 <h2 style="text-align:center">The Overflashed Belkin N450</h2>
 <br>
 <div style="text-align:center"><img src="img1.png"></div>
-
+<br>
 <hr style="height: 2px">
-
 ## Intro
 Welcome back to the part two of my bargain thrift store hacking journey. This is the second router I managed too snag during my recent thrift store haul, and it was a good one. This one came with its own set of quirks and challenges that taught me new techniques. It built on my knowledge from the previous router; however, it ultimately ended in unexpected, or expected given my lack of expertise, way. For $3, I can't complain as it was more than worth its price tag.
 

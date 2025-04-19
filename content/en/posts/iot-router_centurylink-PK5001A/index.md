@@ -8,7 +8,8 @@ draft = false
 <h2 style="text-align:center">Cheap Fun with a CenturyLink PK5001A Router</h2>
 <br>
 <div style="text-align:center"><img src="img1.png"></div>
-
+<br>
+<hr style="height: 2px">
 ## Intro
 Welcome to a new series I will be starting as I practice and learn the craft of IoT hacking. It's been a long time coming for me. I always entertained the idea of getting into hardware hacking as I love the tactile feel of it all. Ever since I was a kid I used to love taking apart old electronics. I remember I had a drawer full of "garbage" electronics that I would salvage from breaking down old printers and mobos. Had a large collection of "barrels" (as I used to call them), nowadays commonly known as capacitors, which I sheered off with pliers. It was a great activity for an impatient, ADHD young me.
 
