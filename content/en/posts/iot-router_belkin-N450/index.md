@@ -11,7 +11,7 @@ draft = false
 <br>
 <hr style="height: 2px">
 ## Intro
-Welcome back to the part two of my bargain thrift store hacking journey. This is the second router I managed too snag during my recent thrift store haul, and it was a good one. This one came with its own set of quirks and challenges that taught me new techniques. It built on my knowledge from the previous router; however, it ultimately ended in unexpected, or expected given my lack of expertise, way. For $3, I can't complain as it was more than worth its price tag.
+Welcome back to the part two of my bargain thrift store hacking journey. This is the second router I managed to snag during my recent thrift store haul, and it was a good one. This one came with its own set of quirks and challenges that taught me new techniques. It built on my knowledge from the previous router; however, it ultimately ended in unexpected, or expected given my lack of expertise, way. For $3, I can't complain as it was more than worth its price tag.
 
 ## OSINT
 For this router, I pretty much only checked for other blog posts that may have talked about hacking this router, but did not find any. I didn't bother checking FCC filings as I was about to bust this baby open on my own anyway, so I saw no benefit in doing so.
