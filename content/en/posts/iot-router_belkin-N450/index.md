@@ -9,12 +9,13 @@ draft = false
 <br>
 <div style="text-align:center"><img src="img1.png"></div>
 <br>
-<hr style="height: 2px">
+<hr style="height: 4px">
+
 ## Intro
-Welcome back to the part two of my bargain thrift store hacking journey. This is the second router I managed to snag during my recent thrift store haul, and it was a good one. This one came with its own set of quirks and challenges that taught me new techniques. It built on my knowledge from the previous router; however, it ultimately ended in unexpected, or expected given my lack of expertise, way. For $3, I can't complain as it was more than worth its price tag.
+Welcome back to the part two of my bargain thrift store hacking journey. This is the second router I managed to snag during my recent thrift store haul, and it was a good one. This one came with its own set of quirks and challenges that taught me new techniques. It built on my knowledge from the previous router; however, it ultimately ended in an unexpected, or expected given my lack of expertise, way. For $3, I can't complain as it was more than worth its price tag.
 
 ## OSINT
-For this router, I pretty much only checked for other blog posts that may have talked about hacking this router, but did not find any. I didn't bother checking FCC filings as I was about to bust this baby open on my own anyway, so I saw no benefit in doing so.
+For this router, I pretty much only checked for other blog posts that may have talked about hacking this thing, but didn't find any. I didn't bother checking FCC filings as I was about to bust this baby open on my own anyway, so I saw no benefit in doing so.
 
 ## Internals
 The board itself was pretty simple and very exposed. There was no heat sinks or maskings. I spotted the UART connector immediately, convieniently located right above the SPI chip. So to spare you the details, I connected straight to it to see what the boot process looked like.
@@ -62,7 +63,7 @@ The bottom view also did not show any traces going to the RX pin. I figured that
 
 <div style="text-align:center"><img src="img4.png"></div>
 
-I then decided to trace the TX pin around the board using my multimeter set to continuity testing. Its first stop was the R363 resistor, but then, due to the silkscreen, it was hard to say where the trace went next. So through brute force, I found where the TX pad connects to the SOC. Then I did the same with the RX pin and found it connected to the SOC here:
+I then decided to trace the TX pin around the board using my multimeter set to continuity testing. Its first stop was the R363 resistor, but then, due to the silkscreen, it was hard to say where the trace went next. So through brute force, I found where the TX pad connects to on the SOC. Then I did the same with the RX pin and found it connected to the SOC here:
 
 <div style="text-align:center"><img src="img5.png"></div>
 
@@ -153,7 +154,9 @@ Call Trace:[<80004ae0>] 0x80004ae0
 <...snip...>
 ```
 
-Althought not described here very well, in between each of these steps were hours spent Googling around trying to find an explanation as to what may be going on. The most dissatisfying answer I found was that manufacturers sometimes disable the RX pin to prevent tampering thorugh UART. I found no information as to how to re-enabled it. As I've mentioned before, this router was not running U-boot, and most of the online helped surrounded that topic almost exclusively. As such, I was on my own... but not entierly. I turned to the IoT Hacker Hangout Discord to see if anybody else has seen this type of behavior from a device, and while fellow hackers said they did, they were unable to assist me despite their best efforts. As such, I decided to switch tactics and go after the SPI chip.
+Ultimately, the glitching did not get me into a different shell or into a mode where my input was being accepted.
+
+Althought not described here very well, in between each of the above-mentioned steps were hours spent Googling around trying to find an explanation as to what may be going on. The most dissatisfying answer I found was that manufacturers sometimes disable the RX pin to prevent tampering through UART. I found no information as to how to re-enable it. As I've mentioned before, this router was not running U-boot, and most of the online helpe surrounded that topic almost exclusively. As such, I was on my own... but not entierly. I turned to the IoT Hacker Hangout Discord to see if anybody else has seen this type of behavior from a device they worked on in the past, and while the fellow hackers said they did, they were unable to assist me despite their best efforts. As such, I decided to switch tactics and go after the SPI chip.
 
 ## SPI Chip
 The SPI chip located just south of the UART pads listed its model as `MXIC MX 25L6445E`:
@@ -185,12 +188,12 @@ DECIMAL       HEXADECIMAL     DESCRIPTION
 1441792       0x160000        Squashfs filesystem, little endian, version 4.0, compression:lzma, size: 2161593 bytes, 870 inodes, blocksize: 131072 bytes, created: 2038-07-30 03:14:08
 ```
 
-Binwalk extracted the firmware along with the squashed file system, granting me access to everything the router has to offer.
+Binwalk extracted the firmware along with the squashed file system, granting me access to everything the router had to offer.
 
 At this point, I spent several hours browsing through the firmware to see if I can find anything that enables UART input, but was unsuccessful. As such, my next step was: MODSSSS.
 
 ### Modifying Firmware
-To modify the firmware of the device, I first referenced back to my `binwalk` output so that I can take note of where the squashfs filesystem resided.
+To modify the firmware, I first referenced back to my `binwalk` output so that I can take note of where the squashfs filesystem resided.
 ```
 1441792       0x160000        Squashfs filesystem, little endian, version 4.0, compression:lzma, size: 2161593 bytes, 870 inodes, blocksize: 131072 bytes, created: 2038-07-30 03:14:08
 ```
@@ -302,7 +305,7 @@ Number of gids 3
 	tty (5)
 ```
 
-You'll notice that I added the `-comp lzma` argument. This is so that the compression method of my modified file system matches that of the source one. If you are wondering where I got this information from, take a look at the file signature of the original squashfs bin dump, it contains `, lzma compressed,`.  I compared the two file signatures to make sure everything looked alright:
+You'll notice that I added the `-comp lzma` argument. This is so that the compression method of my modified file system matches that of the source one. If you are wondering where I got this information from, take a look at the file signature of the original squashfs bin dump, it contained `, compression:lzma,`.  I compared the two file signatures to make sure everything looked alright:
 ```
 # file newrootfs.bin
 newrootfs.bin: Squashfs filesystem, little endian, version 4.0, lzma compressed, 2156316 bytes, 870 inodes, blocksize: 131072 bytes, created: Tue Apr 15 14:21:52 2025
