@@ -1,10 +1,10 @@
 +++
-title = 'IoT: Hacking on a Budget - CenturyLink PK5001A Router'
+title = 'IoT: Hacking on a Budget (part 1) - CenturyLink PK5001A Router'
 date = 2025-04-12T19:50:05-04:00
 draft = false
 +++
 
-<h1 style="text-align:center">IoT Series: Hacking on a Budget</h1>
+<h1 style="text-align:center">IoT Series: Hacking on a Budget - Part 1</h1>
 <h2 style="text-align:center">Cheap Fun with a CenturyLink PK5001A Router</h2>
 <br>
 <div style="text-align:center"><img src="img1.png"></div>
