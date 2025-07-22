@@ -1,6 +1,6 @@
 +++
 title = "IoT: Hacking on a Budget (part 3) - CenturyLink C1100T"
-date = 2025-07-22T13:08:25-05:00
+date = 2025-07-21T13:08:25-05:00
 draft = false
 +++
 
