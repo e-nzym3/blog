@@ -1,6 +1,6 @@
 +++
 title = "IoT: Hacking on a Budget (part 3) - CenturyLink C1100T"
-date = 2025-07-21T13:08:25-05:00
+date = 2025-07-22T13:08:25-05:00
 draft = false
 +++
 
@@ -232,7 +232,7 @@ Just like with the first router in this series, which was also a CenturyLink dev
 
 <div style="text-align:center"><img src="img7.png"></div>
 
-However, connecting to the device through SSH resulted in the same restricted prompt being returned as through the serial console. Since the SSH username field was editable, I change the user to `root` and gave it a new password to see if I could modify the actual root's password this way.
+However, connecting to the device through SSH resulted in the same restricted prompt being returned as through the serial console. Since the SSH username field was editable, I changed the user to `root` and gave it a new password to see if I could modify the actual root's password this way.
 
 <div style="text-align:center"><img src="img8.png"></div>
 
@@ -275,7 +275,7 @@ However, I got an error:
 
 While doing the upgrade, I had my UART connection plugged in so I can monitor for any output. The serial connection unfortunately was not giving me any feedback as to why it failed (although it was pretty clear what the issue was). 
 
-Next, I tried to modify the firmware in a more meticulus way by extracting and rebuilding the UBI image. First, I used `dd` to extract just the UBI image from the firmware file. I also validated the file signatures were correct by comparing the output of `binwalk`. 
+Next, I tried to modify the firmware in a more meticulous way by extracting and rebuilding the UBI image. First, I used `dd` to extract just the UBI image from the firmware file. I also validated the file signatures were correct by comparing the output of `binwalk`. 
 ```
 # binwalk CTW004-5.02.18.3.0412.bin
 
@@ -308,52 +308,52 @@ Analyzed 1 file for 85 file signatures (187 magic patterns) in 28.0 milliseconds
 
 ```
 
-I then printed out the UBIFS info using `ubireader_display_info` command. This extracted for me the CRC of the contained volume.
+I then printed out the UBIFS info using the `ubireader_display_info` command. This extracted for me the CRC of the contained volume.
 ```
 # ubireader_display_info router.img
 
 UBI File
 ---------------------
-	Min I/O: 2048
-	LEB Size: 126976
-	PEB Size: 131072
-	Total Block Count: 237
-	Data Block Count: 235
-	Layout Block Count: 2
-	Internal Volume Block Count: 0
-	Unknown Block Count: 0
-	First UBI PEB Number: 0
+  Min I/O: 2048
+  LEB Size: 126976
+  PEB Size: 131072
+  Total Block Count: 237
+  Data Block Count: 235
+  Layout Block Count: 2
+  Internal Volume Block Count: 0
+  Unknown Block Count: 0
+  First UBI PEB Number: 0
 
-	Image: 1736581915
-	---------------------
-		Image Sequence Num: 1736581915
-		Volume Name:rootfs_ubifs
-		PEB Range: 2 - 236
+  Image: 1736581915
+  ---------------------
+    Image Sequence Num: 1736581915
+    Volume Name:rootfs_ubifs
+    PEB Range: 2 - 236
 
-		Volume: rootfs_ubifs
-		---------------------
-			Vol ID: 0
-			Name: rootfs_ubifs
-			Block Count: 235
+    Volume: rootfs_ubifs
+    ---------------------
+      Vol ID: 0
+      Name: rootfs_ubifs
+      Block Count: 235
 
-			Volume Record
-			---------------------
-				alignment: 1
-				crc: '0x3d365af6'
-				data_pad: 0
-				errors: ''
-				flags: 0
-				name: 'rootfs_ubifs'
-				name_len: 12
-				padding: '\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-				rec_index: 0
-				reserved_pebs: 235
-				upd_marker: 0
-				vol_type: 'static'
+      Volume Record
+      ---------------------
+        alignment: 1
+        crc: '0x3d365af6'
+        data_pad: 0
+        errors: ''
+        flags: 0
+        name: 'rootfs_ubifs'
+        name_len: 12
+        padding: '\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+        rec_index: 0
+        reserved_pebs: 235
+        upd_marker: 0
+        vol_type: 'static'
 
 ```
 
-<i>Do not be fooled by my foo here, I omit quite a bit of this but I spent a significant amount time researching UBIFS to understand which commands to run and what each command did. I just keep it short and simple for brevity and flow reasons. The spinning wheels and research phase occurred pretty much between each console output you see within this post ;)</i>
+<i>Do not be fooled by my foo here, I omit quite a bit of this but I spent a significant amount of time researching UBIFS to understand which commands to run and what each command did. I just keep it short and simple for brevity and flow reasons. The spinning wheels and research phase occurred pretty much between each console output you see within this post ;)</i>
 
 After making the necessary modifications to the `inittab` file to now reflect `/bin/sh` instead of `/bin/restricted_shell`, I went ahead and rebuilt the UBI image. Below is the output from binwalk showing the newly built UBIFS image:
 ```
@@ -398,11 +398,11 @@ With the new firmware file built, I attempted to flash it onto the device via th
 However, this also resulted in the same error message as before. At this point, I spent 2-3 days digging into UBIFS and trying to reconstruct an image that was closer in size to the original. This meant utilizing the same compression methods, testing various UBIFS parameters, and heavily relying on AI to see if it can come up with the correct course of action. Ultimately, these efforts did not yield me a working firmware file that would be accepted by the web UI. I figured there had to be some CRC check occurring on the device that was preventing my firmware from going through. I even passed in the entire, extracted filesystem into Cursor and had the agent walk through the files to identify any logic that may be conducting firmware corruption checks, but that ended up being a lengthy rabbit hole as well. At this point, I left the project alone for a few weeks as I had some life events happening. Upon returning to it and after watching several hardware hacking videos, I decided to proceed with chip-off firmware extraction to see if I can modify the firmware directly on the flash chip itself. This would bypass any protections put in place and potentially get me the root shell I was after.
 
 ## Chip-Off Firmware Extraction
-Before even attempting the chip-off firmware extraction, I had to up my arsenal as my soldering iron and the CH341a I've relying on thus far would not cut it. I ordered myself an XGecu T48, air re-work station, solder flux in a syringe, and some liquid low melt temp solder. This added another few weeks to the waiting game as I waited for everything to arrive. Once I got it, I realized I now needed a TSOP48 adapter for my XGecu to receive the chip in the first place. The XGecu did not come with one, so I proceeded to order one from Ebay. After waiting for almost a month, it finally arrived from China. At this point, I was ready to go.
+Before even attempting the chip-off firmware extraction, I had to up my arsenal as my soldering iron and the CH341a I've been relying on thus far would not cut it. I ordered myself an XGecu T48, air re-work station, solder flux in a syringe, and some liquid low melt temp solder. This added another few weeks to the waiting game as I waited for everything to arrive. Once I got it, I realized I now needed a TSOP48 adapter for my XGecu to receive the chip in the first place. The XGecu did not come with one, so I ordered one from Ebay. After waiting for almost a month, it finally arrived from China. At this point, I was ready to go.
 
-Before attempting to take off the flash chip from the board, I sacrificed the Belkin router I pwned in part 2 of this series and used it as my practice board for desoldering components off the board using the re-work station. It was harder than I thought, but once I got the hang of it, I was able to take chips off without bending any of their pins. This gave me enough confidence to go ahead and remove the flash chip from my board. It was going so smoothly, nothing could go wrong right? WRONG. After I threw the flash chip into my TSOP48 reader, my XGecu refused to read it! After an hour or two of playing around with it, I gave up and decided to order the Xgecu suggested TSOP48 adapter. You know what this meant right? Another month of waiting for it to arrive from China...
+Before attempting to take off the flash chip from the board, I sacrificed the Belkin router I pwned in part 2 of this series and used it as my practice board for desoldering components off the board using the re-work station. It was harder than I thought, but once I got the hang of it, I was able to take chips off without bending any of their pins. This gave me enough confidence to go ahead with the removal of the flash chip from my board. It was going so smoothly, nothing could go wrong right? WRONG. Once I threw the flash chip into my TSOP48 reader, my XGecu refused to read it! After an hour or two of playing around with it, I gave up and decided to order the Xgecu suggested TSOP48 adapter, the "ADP_F48-EX-2". You know what this meant right? Another month of waiting for it to arrive from China...
 
-...but once it arrived, I popped the chip in, and after cleaning the pins, moving the chip back and forth, it finally registered all pins and read the contents of the chip!!!! Success!
+...but once it arrived, I popped the chip in, and after cleaning the pins, moving the chip back and forth, it finally registered all the pins and read the contents of the flash!!!! Success!
 
 <div style="text-align:center"><img src="img12.png"></div>
 
@@ -428,7 +428,7 @@ Then, I went ahead and spread a thin bead of solder paste across the pads and me
 
 <div style="text-align:center"><img src="img18.png"></div>
 
-I cleaned it all up with some iso alcohol and placed the chip in its original orientation back onto the pads, making sure the chip legs were aligned with the pads. I added a bit of flux just for good measure. While holding the chip down with my tweezers, I applied heat with the rework station to both sides of the chip, in a circular motion. The solder quickly took to the chip, requiring minimal adjustment with my tweezers as it slightly floated around. Once I thought I had a good alignment, I took the heat off, waited a few seconds, and let the solder solidify. The result was acceptable (I think), with one side being slightly offset, as you can see below.
+I cleaned it all up with some iso alcohol and placed the chip in its original orientation back onto the pads, making sure the legs were aligned with the pads. I added a bit of flux just for good measure. While holding it down with my tweezers, I applied heat with the rew-ork station to both sides of the chip, in a circular motion. The solder quickly took to the legs, requiring minimal adjustment with my tweezers as it slightly floated around. Once I thought I had a good alignment, I took the heat off, waited a few seconds, and let the solder solidify. The result was acceptable (I think), with one side being slightly offset, as you can see below.
 
 <div style="text-align:center"><img src="img19.png"></div>
 
