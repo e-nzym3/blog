@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en-gb"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name">IoT: Hacking on a Budget (part 3) - CenturyLink C1100T | E-nzym3 Blog</title>
+<meta property="og:title" content="IoT: Hacking on a Budget (part 3) - CenturyLink C1100T | E-nzym3 Blog" />
+<meta name="twitter:title" content="IoT: Hacking on a Budget (part 3) - CenturyLink C1100T | E-nzym3 Blog" />
+<meta itemprop="name" content="IoT: Hacking on a Budget (part 3) - CenturyLink C1100T | E-nzym3 Blog" />
+<meta name="application-name" content="IoT: Hacking on a Budget (part 3) - CenturyLink C1100T | E-nzym3 Blog" />
+<meta property="og:site_name" content="E-nzym3" />
+
+<meta name="description" content="Enzym3&#39;s Blog">
+<meta itemprop="description" content="Enzym3&#39;s Blog" />
+<meta property="og:description" content="Enzym3&#39;s Blog" />
+<meta name="twitter:description" content="Enzym3&#39;s Blog" />
+
+<meta property="og:locale" content="en-gb" />
+<meta name="language" content="en-gb" />
+
+  <link rel="alternate" hreflang="en-gb" href="http://localhost:1313/posts/iot-router_centurylink-c1100t/" title="English" />
+
+
+
+
+
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=2025-07-21T13:08:25-0500 />
+    <meta property="article:published_time" content=2025-07-21T13:08:25-0500 />
+    <meta property="og:url" content="http://localhost:1313/posts/iot-router_centurylink-c1100t/" />
+
+    
+    <meta property="og:article:author" content="Jack Pytel" />
+    <meta property="article:author" content="Jack Pytel" />
+    <meta name="author" content="Jack Pytel" />
+    
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "IoT: Hacking on a Budget (part 3) - CenturyLink C1100T",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "2025-07-21",
+        "description": "",
+        "wordCount":  3824 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "2025-07-21",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "E-nzym3 Blog"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.148.2">
+
+    
+    <meta property="og:url" content="http://localhost:1313/posts/iot-router_centurylink-c1100t/">
+  <meta property="og:site_name" content="E-nzym3 Blog">
+  <meta property="og:title" content="IoT: Hacking on a Budget (part 3) - CenturyLink C1100T">
+  <meta property="og:description" content="IoT Series: Hacking on a Budget - Part 3 The Prolonged CenturyLink C1100T Intro Welcome to the third and final part of the hacking on a budget series, starring the CenturyLink C1100T router. This one took quite some time to finish because I needed to get some additional hardware to finish the pwn and shipping from China took almost a month per item. Nonetheless, for a whopping $1, this was hands down the most fun I’ve had with hardware hacking to date. This router really made me put my thinking cap on, threw me down some rabbit holes with the UBI file system, but finally fell due to the good ol’ hacker’s persistence (aka the try harder method). I hope you find this one as enjoyable as I did!">
+  <meta property="og:locale" content="en_gb">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-07-21T13:08:25-05:00">
+    <meta property="article:modified_time" content="2025-07-21T13:08:25-05:00">
+
+
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="IoT: Hacking on a Budget (part 3) - CenturyLink C1100T">
+  <meta name="twitter:description" content="IoT Series: Hacking on a Budget - Part 3 The Prolonged CenturyLink C1100T Intro Welcome to the third and final part of the hacking on a budget series, starring the CenturyLink C1100T router. This one took quite some time to finish because I needed to get some additional hardware to finish the pwn and shipping from China took almost a month per item. Nonetheless, for a whopping $1, this was hands down the most fun I’ve had with hardware hacking to date. This router really made me put my thinking cap on, threw me down some rabbit holes with the UBI file system, but finally fell due to the good ol’ hacker’s persistence (aka the try harder method). I hope you find this one as enjoyable as I did!">
+
+
+    
+
+    <link rel="canonical" href="http://localhost:1313/posts/iot-router_centurylink-c1100t/">
+    <link href="/style.min.11853a65c712c53bc35a0cbe994fcc1c688974209773c03c56caf25e138ea679.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-96x96.png">
+    <link rel="mask-icon" href="/icons/favicon.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="http://localhost:1313/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+</head>
+<body data-theme = "dark" class="notransition">
+
+<script src="/js/theme.js"></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="http://localhost:1313/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title>Home</title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/posts/">
+                        Posts
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/pages/about/">
+                        About
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">IoT: Hacking on a Budget (part 3) - CenturyLink C1100T</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2025-07-21T13:08:25-05:00" itemprop="datePublished"> 21 Jul 2025 </time>
+                </div>
+                
+            </header>
+            
+    
+    <details class="toc" ZgotmplZ>
+        <summary><b>Table of Contents</b></summary>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#intro">Intro</a></li>
+    <li><a href="#osint">OSINT</a></li>
+    <li><a href="#access">Access</a>
+      <ul>
+        <li><a href="#uart">UART</a></li>
+      </ul>
+    </li>
+    <li><a href="#analysis-of-vendors-firmware">Analysis of Vendor&rsquo;s Firmware</a></li>
+    <li><a href="#web-portal">Web Portal</a></li>
+    <li><a href="#firmware-modification">Firmware Modification</a></li>
+    <li><a href="#chip-off-firmware-extraction">Chip-Off Firmware Extraction</a></li>
+    <li><a href="#closing-thoughts">Closing Thoughts</a></li>
+  </ul>
+</nav>
+    </details>
+            <div class="page-content">
+                <h1 style="text-align:center">IoT Series: Hacking on a Budget - Part 3</h1>
+<h2 style="text-align:center">The Prolonged CenturyLink C1100T</h2>
+<br>
+<div style="text-align:center"><img src="img1.png"></div>
+<br>
+<hr style="height: 4px">
+<h2 id="intro">Intro</h2>
+<p>Welcome to the third and final part of the hacking on a budget series, starring the CenturyLink C1100T router. This one took quite some time to finish because I needed to get some additional hardware to finish the pwn and shipping from China took almost a month per item. Nonetheless, for a whopping $1, this was hands down the most fun I&rsquo;ve had with hardware hacking to date. This router really made me put my thinking cap on, threw me down some rabbit holes with the UBI file system, but finally fell due to the good ol&rsquo; hacker&rsquo;s persistence (aka the try harder method). I hope you find this one as enjoyable as I did!</p>
+<h2 id="osint">OSINT</h2>
+<p>The minimal OSINT I performed on this device yielded me a vendor supplied firmware file, which was very helpful as you will see later on. The firmware was hosted directly by CenturyLink <a href="https://www.centurylink.com/home/help/internet/modems-and-routers/retired-centurylink-modems.html">here</a> (<a href="http://internethelp.centurylink.com/internethelp/modems/c1100t/firmware/CTW004-5.02.18.3.0412.bin">direct download</a>). Fun fact, it was not encrypted.</p>
+<h2 id="access">Access</h2>
+<p>After cracking open the case, taking out the main board, and uncovering all metal shielding, I found that the layout was pretty straightforward. The board had an exposed 4-pin connector which immediately screamed UART to me, a pretty sizable heatsink (which got very hot during normal operation, might I add) on top of the main chip, and what I later identified to be the flash chip on the underside of the board.</p>
+<div style="text-align:center"><img src="img2.png"></div>
+<div style="text-align:center"><img src="img3.png"></div>
+<h3 id="uart">UART</h3>
+<p>On all the routers I&rsquo;ve tested thus far in this series, UART has been very upfront across all of them, including here. I tested it with my multi meter to get the correct pinout, which turned out to be as such:</p>
+<div style="text-align:center"><img src="img4.png"></div>
+<p>I hooked it up to my Flipper and used <code>picocom</code> to connect to it. For the baud rate, my first guess was <code>115200</code> which happened to be correct. Below is a short excerpt from the beginning of the router&rsquo;s boot:</p>
+<pre tabindex="0"><code># picocom /dev/ttyACM0 -b 115200 --log boot.log
+
+&lt;...snip...&gt;
+
+HELO
+CPUI
+L1CI
+HELO
+CPUI
+L1CI
+DRAM
+----
+PHYS
+STRF
+400H
+PHYE
+DDR3
+SIZ4
+SIZ3
+SIZ2
+DINT
+USYN
+LSYN
+MFAS
+LMBE
+RACE
+PASS
+----
+ZBSS
+CODE
+DATA
+L12F
+MAIN
+FPS0
+BT00
+0001
+BT01
+0488
+NAN3
+RFS2
+NAN5
+
+
+Base: 4.16_03
+CFE version 1.0.38-118.3 for BCM963268 (32bit,SP,BE)
+Build Date: Wed Jun 14 13:56:05 EDT 2017 (mcclearym@mcclearym-server1)
+Copyright (C) 2000-2015 Broadcom Corporation.
+
+Boot Strap Register:  0x1ffb5bf
+Chip ID: BCM63168D0, MIPS: 400MHz, DDR: 400MHz, Bus: 200MHz
+Main Thread: TP0
+Memory Test Passed
+Total Memory: 134217728 bytes (128MB)
+Boot Address: 0xb8000000
+
+NAND ECC BCH-8, page size 0x800 bytes, spare size used 64 bytes
+NAND flash device: Micron MT29F1G08AAC, id 0x2cf1 block 128KB size 131072KB
+</code></pre><p>So I was dealing with a CFE boot loader and OpenWrt (as later confirmed when the router returned an OpenWrt login prompt). I quickly tested the default OpenWrt credentials, but they did not work.</p>
+<pre tabindex="0"><code>OpenWrt login: root
+Password:
+Login incorrect
+</code></pre><p>I then looked through the boot output and found some useful and interesting things. During the first phase of boot, a prompt popped up to press any key to stop the auto run process:</p>
+<pre tabindex="0"><code>&lt;...snip...&gt;
+
+External switch id = 53125
+*** Press any key to stop auto run (1 seconds) ***
+Auto run second count down: 0
+
+&lt;...snip...&gt;
+</code></pre><p>I also picked up the memory addresses for the partitions:</p>
+<pre tabindex="0"><code>[    1.509468] Creating 9 MTD partitions on &#34;brcmnand.0&#34;:
+[    1.514259] 0x0000040c0000-0x0000079e0000 : &#34;rootfs&#34;
+[    1.521344] mtd: device 0 (rootfs) set to be root filesystem
+[    1.526728] 0x000000020000-0x000003d00000 : &#34;rootfs_update&#34;
+[    1.534266] 0x000007a00000-0x000007e00000 : &#34;rootfs_data&#34;
+[    1.540494] 0x000000000000-0x000000020000 : &#34;nvram&#34;
+[    1.546301] 0x000000020000-0x000003d00000 : &#34;image_update&#34;
+[    1.553350] 0x000003d00000-0x0000079e0000 : &#34;image&#34;
+[    1.559667] 0x000003d00000-0x0000040c0000 : &#34;bootfs&#34;
+[    1.565554] 0x000000000000-0x000008000000 : &#34;dummy2&#34;
+[    1.572758] 0x000007e00000-0x00000fc00000 : &#34;persist&#34;
+</code></pre><p>Everything else appeared to be standard boot output, which I saved for reference in the future. Anyways, I returned to the login prompt for now where I tested the admin credentials listed on the router&rsquo;s sticker:</p>
+<div style="text-align:center"><img src="img5.png"></div>
+<p>Sure enough, these worked! I was then greeted by a very scary message from Technicolor:</p>
+<pre tabindex="0"><code>This program contains proprietary information which is a trade secret of Technicolor
+and also is protected by intellectual property as an unpublished work
+under applicable Copyright laws/right of authorship.
+This program is also subject to some patent and pending patent applications.
+Technicolor is registered trademark and trade name of Technicolor group company,
+and shall not be used in any manner without express written from Technicolor.
+The use of the program and documentation is strictly limited to your own internal
+evaluation of the product embedding such program, unless expressly agreed otherwise
+by Technicolor under a specific agreement.
+Recipient is to retain this program in confidence and is not permitted to use
+or make copies thereof other than as permitted in a written agreement with Technicolor,
+unless otherwise expressly allowed by applicable laws.
+Recipient is not allowed to make any copy, decompile, reverse engineer, disassemble,
+and attempt to derive the source code of, modify, or
+create derivative works of the program, any update, or any part thereof.
+Any violation or attempt to do so is a violation of the rights of Technicolor.
+If you or any person under your control or authority breach this restriction,
+you may be subject to prosecution and damages.
+====================================================================================
+admin&gt;
+</code></pre><p>lol, okk&hellip;</p>
+<p>The console prompt at first glance did not appear to be your standard <code>/bin/sh</code>. And indeed it wasn&rsquo;t. I tried executing <code>pwd</code> and was told that the command was invalid. However, I did get back a list of all available commands:</p>
+<pre tabindex="0"><code>admin&gt; pwd
+invalid command: [pwd]
+AVAILABLE COMMANDS:
+===================
+  apply
+  brctl
+  coredump
+  count
+  dmesg
+  dsldiagd
+  get  (GetParameterValues,gpv,GPV)
+  getpn  (GetParameterNames,gpn,GPN)
+  ifconfig
+  ifstat
+  ifstatus
+  ip
+  ip6tables
+  iptables
+  list
+  logread
+  newsrpuser
+  nslookup
+  ping
+  ps
+  readlogfile
+  reboot
+  resolve
+  route
+  rtfd
+  showinfo
+  showtag
+  stop
+  subscribe
+  tcpdump
+  top
+  traceroute
+  ubuscall
+  ubuslisten
+  unlock
+  unsubscribe
+  upgrade
+  wireless_autochannel
+  xdslctl
+  reload
+  help
+  exit
+</code></pre><p>I had an idea how to break out of this given my experience with the router from part 2 of this series (modifying firmware). Before doing so, I decided to peep at the firmware I downloaded from the vendor&rsquo;s website to get an idea of what I was dealing with here.</p>
+<h2 id="analysis-of-vendors-firmware">Analysis of Vendor&rsquo;s Firmware</h2>
+<p>I kicked off analysis of the firmware by using <code>binwalk</code> with the <code>-e</code> and <code>-M</code> arguments. <code>-M</code> told <code>binwalk</code> to analyze and extract any subsequently extracted files.</p>
+<div style="text-align:center"><img src="img6.png"></div>
+<p>The above screenshot is just an excerpt. The command kept going until it analyzed all the files. Most importantly, I was able to extract the root file system that was contained within the firmware:</p>
+<pre tabindex="0"><code># cd ./extractions/CTW004-5.02.18.3.0412.bin.extracted/2C0085/ubifs-root/ubi_2C0085.img/img-1736581915_vol-rootfs_ubifs.ubifs.extracted/0/ubifs-root
+
+# ls
+bin  custo  dev  etc  lib  mnt  overlay  proc  rom  root  sbin  sys  tmp  usr  var  www
+</code></pre><p>From here, I read the contents of the <code>etc/inittab</code> to see what was being executed at boot. Lo and behold, that&rsquo;s where the shell jail resided:</p>
+<pre tabindex="0"><code># cat etc/inittab
+::sysinit:/etc/init.d/rcS S boot
+::shutdown:/etc/init.d/rcS K shutdown
+::askconsole:/bin/restricted_shell
+</code></pre><p>The router executed the <code>/bin/restricted_shell</code> script on boot. While I could have just modified this line to read <code>::askconsole:/bin/sh</code> and then re-flashed the firmware onto the device, I figured I would take a look at the script to see if I can find a bypass first. I looked through the script and could not find a way to manually bypass the shell restrictions. I tried using AI to help me figure out what potential attack vectors would be possible against this script, but came up empty handed. As such, I moved onto analyzing the router&rsquo;s web UI next to see what features may be hiding there.</p>
+<h2 id="web-portal">Web Portal</h2>
+<p>Just like with the first router in this series, which was also a CenturyLink device, I went into the Advanced Setup portion of the portal and enabled remote console over SSH while configuring credentials for the <code>admin</code> user. I set the password to <code>Passw0rd!</code> as the config required some complexity.</p>
+<div style="text-align:center"><img src="img7.png"></div>
+<p>However, connecting to the device through SSH resulted in the same restricted prompt being returned as through the serial console. Since the SSH username field was editable, I changed the user to <code>root</code> and gave it a new password to see if I could modify the actual root&rsquo;s password this way.</p>
+<div style="text-align:center"><img src="img8.png"></div>
+<p>Ultimately, it didn&rsquo;t. The web GUI did offer a way to upgrade firmware on the device, so there was my chance to upload a modified firmware that may override the shell jail applied by the <code>restricted_shell.sh</code> script.</p>
+<h2 id="firmware-modification">Firmware Modification</h2>
+<p>To test if modifying the firmware would work, I first printed out the strings of the downloaded firmware file to see if I can find a reference to the <code>::askconsole/bin/restricted_shell</code> line, and indeed I did:</p>
+<pre tabindex="0"><code># xxd CTW004-5.02.18.3.0412.bin | less
+
+&lt;...snip...&gt;
+
+009b99e0: 6974 2e64 2f72 6353 204b 2073 6875 7464  it.d/rcS K shutd
+009b99f0: 6f77 6e0a 3a3a 6173 6b63 6f6e 736f 6c65  own.::askconsole
+009b9a00: 3a2f 6269 6e2f 7265 7374 7269 6374 6564  :/bin/restricted
+009b9a10: 5f73 6865 6c6c 0aff ffff ffff ff31 1810  _shell.......1..
+009b9a20: 068e 6107 a941 1900 0000 0000 00a0 0000  ..a..A..........
+
+&lt;...snip...&gt;
+</code></pre><p>I copied line <code>009b9a00</code> to a hex editor and modified it to read <code>/bin/sh</code>. <i>Note: I confirmed <code>/bin/sh</code> existed inside the firmware&rsquo;s packaged OS before making this mod.</i></p>
+<pre tabindex="0"><code>Old values:
+009b9a00: 3a2f 6269 6e2f 7265 7374 7269 6374 6564  :/bin/restricted
+009b9a10: 5f73 6865 6c6c 0aff ffff ffff ff31 1810  _shell.......1..
+
+New values:
+009b9a00: 3A2F 6269 6E2F 7368 ffff ffff ffff ffff  :/bin/sh........
+009b9a10: ffff ffff ffff ffff ffff ffff ff31 1810  .............1..
+</code></pre><p>I hoped there were no CRC values I had to worry about here, because with this modification, any error checks would fail. Next I went ahead and tried to upgrade the firmware through the portal:</p>
+<div style="text-align:center"><img src="img9.png"></div>
+<p>However, I got an error:</p>
+<div style="text-align:center"><img src="img10.png"></div>
+<p>While doing the upgrade, I had my UART connection plugged in so I can monitor for any output. The serial connection unfortunately was not giving me any feedback as to why it failed (although it was pretty clear what the issue was).</p>
+<p>Next, I tried to modify the firmware in a more meticulous way by extracting and rebuilding the UBI image. First, I used <code>dd</code> to extract just the UBI image from the firmware file. I also validated the file signatures were correct by comparing the output of <code>binwalk</code>.</p>
+<pre tabindex="0"><code># binwalk CTW004-5.02.18.3.0412.bin
+
+/home/enzym3/Desktop/iot_projects/centurylink_c1100t-router/CTW004-5.02.18.3.0412.bin
+------------------------------------------------------------------------
+DECIMAL                            HEXADECIMAL                        DESCRIPTION
+------------------------------------------------------------------------
+133                                0x85                               JFFS2 filesystem, big endian, nodes: 600, total size: 2398968 bytes
+2883717                            0x2C0085                           UBI image, version: 1, image size: 31064064 bytes
+------------------------------------------------------------------------
+
+Analyzed 1 file for 85 file signatures (187 magic patterns) in 47.0 milliseconds
+
+# dd if=CTW004-5.02.18.3.0412.bin of=router.img skip=2883717 bs=1 count=31064064
+
+31064064+0 records in
+31064064+0 records out
+31064064 bytes (31 MB, 30 MiB) copied, 20.984 s, 1.5 MB/s
+
+# binwalk router.img
+
+/home/enzym3/Desktop/iot_projects/centurylink_c1100t-router/router.img
+------------------------------------------------------------------------
+DECIMAL                            HEXADECIMAL                        DESCRIPTION
+------------------------------------------------------------------------
+0                                  0x0                                UBI image, version: 1, image size: 31064064 bytes
+------------------------------------------------------------------------
+
+Analyzed 1 file for 85 file signatures (187 magic patterns) in 28.0 milliseconds
+</code></pre><p>I then printed out the UBIFS info using the <code>ubireader_display_info</code> command. This extracted for me the CRC of the contained volume.</p>
+<pre tabindex="0"><code># ubireader_display_info router.img
+
+UBI File
+---------------------
+  Min I/O: 2048
+  LEB Size: 126976
+  PEB Size: 131072
+  Total Block Count: 237
+  Data Block Count: 235
+  Layout Block Count: 2
+  Internal Volume Block Count: 0
+  Unknown Block Count: 0
+  First UBI PEB Number: 0
+
+  Image: 1736581915
+  ---------------------
+    Image Sequence Num: 1736581915
+    Volume Name:rootfs_ubifs
+    PEB Range: 2 - 236
+
+    Volume: rootfs_ubifs
+    ---------------------
+      Vol ID: 0
+      Name: rootfs_ubifs
+      Block Count: 235
+
+      Volume Record
+      ---------------------
+        alignment: 1
+        crc: &#39;0x3d365af6&#39;
+        data_pad: 0
+        errors: &#39;&#39;
+        flags: 0
+        name: &#39;rootfs_ubifs&#39;
+        name_len: 12
+        padding: &#39;\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00&#39;
+        rec_index: 0
+        reserved_pebs: 235
+        upd_marker: 0
+        vol_type: &#39;static&#39;
+</code></pre><p><i>Do not be fooled by my foo here, I omit quite a bit of this but I spent a significant amount of time researching UBIFS to understand which commands to run and what each command did. I just keep it short and simple for brevity and flow reasons. The spinning wheels and research phase occurred pretty much between each console output you see within this post ;)</i></p>
+<p>After making the necessary modifications to the <code>inittab</code> file to now reflect <code>/bin/sh</code> instead of <code>/bin/restricted_shell</code>, I went ahead and rebuilt the UBI image. Below is the output from binwalk showing the newly built UBIFS image:</p>
+<pre tabindex="0"><code># binwalk rebuilt_router.ubi
+
+                                                          /home/enzym3/Desktop/iot_projects/centurylink_c1100t-router/modded/rebuilt_router.ubi
+------------------------------------------------------------------------
+DECIMAL                            HEXADECIMAL                        DESCRIPTION
+------------------------------------------------------------------------
+0                                  0x0                                UBI image, version: 1, image size: 33816576 bytes
+------------------------------------------------------------------------
+
+Analyzed 1 file for 85 file signatures (187 magic patterns) in 88.0 milliseconds
+</code></pre><p>As you can see, the size of the image is slightly off, but I figured this wouldn&rsquo;t hurt anything since the UBI image resided at the end of the firmware file. I then packaged the new UBI image using <code>dd</code> to the original firmware file.</p>
+<pre tabindex="0"><code># dd if=rebuilt_router.ubi of=CTW004-5.02.18.3.0412-hacked.bin seek=2883717 bs=1 conv=notrunc count=33816576
+
+33816576+0 records in
+33816576+0 records out
+33816576 bytes (34 MB, 32 MiB) copied, 21.3042 s, 1.6 MB/s
+
+# binwalk CTW004-5.02.18.3.0412-hacked.bin
+
+/home/enzym3/Desktop/iot_projects/centurylink_c1100t-router/CTW004-5.02.18.3.0412-hacked.bin
+------------------------------------------------------------------------
+DECIMAL                            HEXADECIMAL                        DESCRIPTION
+------------------------------------------------------------------------
+133                                0x85                               JFFS2 filesystem, big endian, nodes: 600, total size: 2398968 bytes
+2883717                            0x2C0085                           UBI image, version: 1, image size: 33816576 bytes
+------------------------------------------------------------------------
+
+Analyzed 1 file for 85 file signatures (187 magic patterns) in 75.0 milliseconds
+</code></pre><p>With the new firmware file built, I attempted to flash it onto the device via the web UI once again.</p>
+<div style="text-align:center"><img src="img11.png"></div>
+<p>However, this also resulted in the same error message as before. At this point, I spent 2-3 days digging into UBIFS and trying to reconstruct an image that was closer in size to the original. This meant utilizing the same compression methods, testing various UBIFS parameters, and heavily relying on AI to see if it can come up with the correct course of action. Ultimately, these efforts did not yield me a working firmware file that would be accepted by the web UI. I figured there had to be some CRC check occurring on the device that was preventing my firmware from going through. I even passed in the entire, extracted filesystem into Cursor and had the agent walk through the files to identify any logic that may be conducting firmware corruption checks, but that ended up being a lengthy rabbit hole as well. At this point, I left the project alone for a few weeks as I had some life events happening. Upon returning to it and after watching several hardware hacking videos, I decided to proceed with chip-off firmware extraction to see if I can modify the firmware directly on the flash chip itself. This would bypass any protections put in place and potentially get me the root shell I was after.</p>
+<h2 id="chip-off-firmware-extraction">Chip-Off Firmware Extraction</h2>
+<p>Before even attempting the chip-off firmware extraction, I had to up my arsenal as my soldering iron and the CH341a I&rsquo;ve been relying on thus far would not cut it. I ordered myself an XGecu T48, air re-work station, solder flux in a syringe, and some liquid low melt temp solder. This added another few weeks to the waiting game as I waited for everything to arrive. Once I got it, I realized I now needed a TSOP48 adapter for my XGecu to receive the chip in the first place. The XGecu did not come with one, so I ordered one from Ebay. After waiting for almost a month, it finally arrived from China. At this point, I was ready to go.</p>
+<p>Before attempting to take off the flash chip from the board, I sacrificed the Belkin router I pwned in part 2 of this series and used it as my practice board for desoldering components off the board using the re-work station. It was harder than I thought, but once I got the hang of it, I was able to take chips off without bending any of their pins. This gave me enough confidence to go ahead with the removal of the flash chip from my board. It was going so smoothly, nothing could go wrong right? WRONG. Once I threw the flash chip into my TSOP48 reader, my XGecu refused to read it! After an hour or two of playing around with it, I gave up and decided to order the Xgecu suggested TSOP48 adapter, the &ldquo;ADP_F48-EX-2&rdquo;. You know what this meant right? Another month of waiting for it to arrive from China&hellip;</p>
+<p>&hellip;but once it arrived, I popped the chip in, and after cleaning the pins, moving the chip back and forth, it finally registered all the pins and read the contents of the flash!!!! Success!</p>
+<div style="text-align:center"><img src="img12.png"></div>
+<div style="text-align:center"><img src="img13.png"></div>
+<p>Now with the firmware extracted from the chip, I could now make the necessary modification to hopefully trigger a boot into a non-restricted shell. I used a hex editor to open the firmware dump and searched for the <code>/bin/restricted_shell</code> string. After several skips, I landed on the correct entry:</p>
+<div style="text-align:center"><img src="img14.png"></div>
+<p>I simply changed the <code>restricted_shell</code> bit to <code>sh</code>, resulting in <code>/bin/sh</code>:</p>
+<div style="text-align:center"><img src="img15.png"></div>
+<p>Then, I reattached the chip to my reader and flashed it with the modified firmware. It all went smooooooothly this time.</p>
+<div style="text-align:center"><img src="img16.png"></div>
+<p>Now I was left with the scary part, soldering the chip back on. I did one round of chip soldering practice using the low melting temp solder paste on my (now) practice Belkin board, and it went good &rsquo;nuff (I think, did not actually test the board but solder joints were acceptable). So with one practice round done, I went onto soldering the actual chip back on. First, I cleaned up the pads with some soldering wick and flux.</p>
+<div style="text-align:center"><img src="img17.jpg"></div>
+<p>Then, I went ahead and spread a thin bead of solder paste across the pads and melted it on with my re-work station. I cleaned up the pads with a wick while keeping heat on the pads to ensure the pads did not have any blobs that connected them together. The prepped pads looked good under the microscope.</p>
+<div style="text-align:center"><img src="img18.png"></div>
+<p>I cleaned it all up with some iso alcohol and placed the chip in its original orientation back onto the pads, making sure the legs were aligned with the pads. I added a bit of flux just for good measure. While holding it down with my tweezers, I applied heat with the rew-ork station to both sides of the chip, in a circular motion. The solder quickly took to the legs, requiring minimal adjustment with my tweezers as it slightly floated around. Once I thought I had a good alignment, I took the heat off, waited a few seconds, and let the solder solidify. The result was acceptable (I think), with one side being slightly offset, as you can see below.</p>
+<div style="text-align:center"><img src="img19.png"></div>
+<div style="text-align:center"><img src="img20.png"></div>
+<p>I cleaned it up with some alcohol once more, just for good measure. Now, for the moment of truth, it was time to connect back to UART and see if the firmware successfully loaded! But&hellip; it didn&rsquo;t. After hooking up to UART, I got several <code>bad block</code> errors during boot; however, that was after loading the image. So perhaps the solder job was solid but the firmware mod was the fail.</p>
+<pre tabindex="0"><code>&lt;...snip...&gt;
+
+Auto run second count down: 0
+Correctable ECC Error detected: addr=0x00258600, intrCtrl=0x00000090, accessCtrl=0xE3881010
+Correctable ECC Error detected: addr=0x009eaa00, intrCtrl=0x00000090, accessCtrl=0xE3881010
+failed to find version file on bank 1
+BANK 1 has version UNKNOWN
+BANK 2 has version CTW004-5.02.183.0412
+Booting from only image (address 0xbbd00000, flash offset 0x03d00000) ...
+Decompression LZMA Image OK!
+Entry at 0x80014f00
+Closing network.
+Disabling Switch ports.
+Flushing Receive Buffers...
+0 buffers found
+Closing DMA Channels
+Starting program at 0x80014f00
+[    0.000000] Initializing cgroup subsys cpu
+
+&lt;...snip...&gt;
+
+[    1.296410] brcmnand_reset_corr_threshold: default CORR ERR threshold  1 bits for CS0
+[    1.304442] brcmnand_reset_corr_threshold: CORR ERR threshold changed to 6 bits for CS0
+[    1.313099] nand_read_bbt: Bad block at 0x047c0000
+[    1.317624] nand_read_bbt: Bad block at 0x047e0000
+[    1.322538] nand_read_bbt: Bad block at 0x04800000
+[    1.327462] nand_read_bbt: Bad block at 0x04820000
+[    1.332384] nand_read_bbt: Bad block at 0x04840000
+[    1.337329] nand_read_bbt: Bad block at 0x04860000
+[    1.342263] nand_read_bbt: Bad block at 0x04880000
+[    1.347166] nand_read_bbt: Bad block at 0x048a0000
+[    1.352109] nand_read_bbt: Bad block at 0x048c0000
+[    1.357054] nand_read_bbt: Bad block at 0x048e0000
+[    1.361972] nand_read_bbt: Bad block at 0x04900000
+[    1.366876] nand_read_bbt: Bad block at 0x04920000
+[    1.371819] nand_read_bbt: Bad block at 0x04940000
+
+&lt;...snip...&gt;
+</code></pre><p>I figured it was possible that since I changed the size of the image (because <code>/bin/sh</code> is shorter than <code>/bin/restricted_shell</code>) it threw everything out of wack. So I decided to try the chip-off again, but this time padding the firmware with some null bytes. This time, I replaced the <code>/bin/restricted_shell</code> with <code>/bin/sh</code> and padded it with 14<code>FF</code> bytes after the newline <code>A0</code> byte, which resulted in maintaining the same size of the firmware, placing everything afterwards at the correct byte offset.</p>
+<div style="text-align:center"><img src="img21.png"></div>
+<p>For what it&rsquo;s worth, I think my solder joints came out better on this second try:</p>
+<div style="text-align:center"><img src="img22.jpg"></div>
+<p>After reconnecting to the UART and booting up the device, a bunch of bad memory errors still flooded my console. HOWEVER! After a few seconds I saw <code>/ #</code>. I ran <code>ls</code> and <code>id</code> and&hellip; WE GOT ROOT BABY!</p>
+<pre tabindex="0"><code>[   33.690781] usbcore: registered new interface driver smsc95xx
+[   33.699510] usbcore: registered new interface driver cdc_mbim
+[   33.705898] kmodloader: done loading kernel modules from /etc/modules.d/*
+[   37.272430] jffs2: Empty flash at 0x00062a0c ends at 0x00063000
+[   37.311759] jffs2: notice: (754) jffs2_build_xattr_subsystem: complete building xattr subsystem, 0 of xdatum (0 unchecked, 0 orphan) and 0 of xref (0 dead, 0 orphan) found.
+
+/ # 
+/ # ls
+bin      dev      lib      persist  root     tmp      www
+cgroups  etc      mnt      proc     sbin     usr
+custo    home     overlay  rom      sys      var
+/ # id
+uid=0(root) gid=0(root)
+
+&lt;...snip...&gt;
+</code></pre><p>I was already giving up hope, this all felt too janky, but persistence paid off! This was a good enough stopping point for me as I was already itching to get to the next device I got sitting in my closet (stay tuned!).</p>
+<h2 id="closing-thoughts">Closing Thoughts</h2>
+<p>I must say, getting this root shell brought me back to my early pentesting days and the first time I owned an AD environment. This router definitely helped me up my hardware skills and allowed me to explore avenues I haven&rsquo;t known or tried before. Now with this experience under my belt, I can say I&rsquo;m definitely more confident in chip-off firmware modification. Honestly, can&rsquo;t wait to do some more in the future.</p>
+<p>This router concludes my hacking on a budget series. This was a lot of fun, especially since all the routers cost me less than $8 in total. For anybody thinking of getting into hardware hacking, I highly recommend going this route as well. The amount of learning that can be squeezed out of cheap hardware is mind blowing. Keep an eye out for your local, non-chain, thrift store to find similar deals. Speaking from experience, the chain donation stores like Goodwill tend to overprice their hardware. The lesser known, tucked-in-the-corner-of-the-strip-mall thrift stores tend to be better on prices and are usually less picked through, so I recommend trying there first.</p>
+<p>If you made it this far, thank you for coming along on this learning journey with me. Hope you enjoyed it and perhaps it was just what you needed to get your hardware hacking journey started, like myself. If you have any tips, suggestions, or comments, find me on the interwebs. Would love to hear from you!</p>
+<p>See you on the next one, and maybe see you at Defcon 2025!</p>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+<a href="https://github.com/e-nzym3" target="_blank" rel="noopener noreferrer me"
+    title="Github">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://x.com/pyteljack" target="_blank" rel="noopener noreferrer me"
+    title="X">
+    <svg viewBox="0 0 1200 1227" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path
+        d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z"/>
+</svg>
+</a>
+<a href="https://www.linkedin.com/in/jack-pytel/" target="_blank" rel="noopener noreferrer me"
+    title="Linkedin">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect x="2" y="9" width="4" height="12"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        © 2025 Jack Pytel.
+        Everything contained on this blog is purely for educational purposes only!
+    </small>
+</footer><a href="#" title="Go to top" id="totop">
+    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" stroke="currentColor" viewBox="0 96 960 960">
+    <path d="M283 704.739 234.261 656 480 410.261 725.739 656 677 704.739l-197-197-197 197Z"/>
+</svg>
+
+</a>
+
+
+    
+
+
+
+
+    
+    
+        
+    
+
+    
+    
+        
+    
+
+
+
+    
+    <script async src="http://localhost:1313/js/main.js" ></script>
+
+    
+
+</body>
+</html>

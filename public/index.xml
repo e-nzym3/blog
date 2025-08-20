@@ -6,7 +6,77 @@
     <description>Recent content in Home on E-nzym3 Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Wed, 21 Aug 2024 11:33:52 -0500</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Jul 2025 13:08:25 -0500</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IoT: Hacking on a Budget (part 3) - CenturyLink C1100T</title>
+      <link>http://localhost:1313/posts/iot-router_centurylink-c1100t/</link>
+      <pubDate>Mon, 21 Jul 2025 13:08:25 -0500</pubDate>
+      
+      <guid>http://localhost:1313/posts/iot-router_centurylink-c1100t/</guid>
+      
+      <description>&lt;h1 style=&#34;text-align:center&#34;&gt;IoT Series: Hacking on a Budget - Part 3&lt;/h1&gt;
+&lt;h2 style=&#34;text-align:center&#34;&gt;The Prolonged CenturyLink C1100T&lt;/h2&gt;
+&lt;br&gt;
+&lt;div style=&#34;text-align:center&#34;&gt;&lt;img src=&#34;img1.png&#34;&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;hr style=&#34;height: 4px&#34;&gt;
+&lt;h2 id=&#34;intro&#34;&gt;Intro&lt;/h2&gt;
+&lt;p&gt;Welcome to the third and final part of the hacking on a budget series, starring the CenturyLink C1100T router. This one took quite some time to finish because I needed to get some additional hardware to finish the pwn and shipping from China took almost a month per item. Nonetheless, for a whopping $1, this was hands down the most fun I&amp;rsquo;ve had with hardware hacking to date. This router really made me put my thinking cap on, threw me down some rabbit holes with the UBI file system, but finally fell due to the good ol&amp;rsquo; hacker&amp;rsquo;s persistence (aka the try harder method). I hope you find this one as enjoyable as I did!&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>IoT: Hacking on a Budget (part 2) - Belkin N450</title>
+      <link>http://localhost:1313/posts/iot-router_belkin-n450/</link>
+      <pubDate>Fri, 18 Apr 2025 21:22:05 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/iot-router_belkin-n450/</guid>
+      
+      <description>&lt;h1 style=&#34;text-align:center&#34;&gt;IoT Series: Hacking on a Budget - Part 2&lt;/h1&gt;
+&lt;h2 style=&#34;text-align:center&#34;&gt;The Overflashed Belkin N450&lt;/h2&gt;
+&lt;br&gt;
+&lt;div style=&#34;text-align:center&#34;&gt;&lt;img src=&#34;img1.png&#34;&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;hr style=&#34;height: 4px&#34;&gt;
+&lt;h2 id=&#34;intro&#34;&gt;Intro&lt;/h2&gt;
+&lt;p&gt;Welcome back to the part two of my bargain thrift store hacking journey. This is the second router I managed to snag during my recent thrift store haul, and it was a good one. This one came with its own set of quirks and challenges that taught me new techniques. It built on my knowledge from the previous router; however, it ultimately ended in an unexpected, or expected given my lack of expertise, way. For $3, I can&amp;rsquo;t complain as it was more than worth its price tag.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>IoT: Hacking on a Budget (part 1) - CenturyLink PK5001A Router</title>
+      <link>http://localhost:1313/posts/iot-router_centurylink-pk5001a/</link>
+      <pubDate>Sat, 12 Apr 2025 19:50:05 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/iot-router_centurylink-pk5001a/</guid>
+      
+      <description>&lt;h1 style=&#34;text-align:center&#34;&gt;IoT Series: Hacking on a Budget - Part 1&lt;/h1&gt;
+&lt;h2 style=&#34;text-align:center&#34;&gt;Cheap Fun with a CenturyLink PK5001A Router&lt;/h2&gt;
+&lt;br&gt;
+&lt;div style=&#34;text-align:center&#34;&gt;&lt;img src=&#34;img1.png&#34;&gt;&lt;/div&gt;
+&lt;br&gt;
+&lt;hr style=&#34;height: 4px&#34;&gt;
+&lt;h2 id=&#34;intro&#34;&gt;Intro&lt;/h2&gt;
+&lt;p&gt;Welcome to a new series I will be starting as I practice and learn the craft of IoT hacking. It&amp;rsquo;s been a long time coming for me. I always entertained the idea of getting into hardware hacking as I love the tactile feel of it all. Ever since I was a kid I used to love taking apart old electronics. I remember I had a drawer full of &amp;ldquo;garbage&amp;rdquo; electronics that I would salvage from breaking down old printers and mobos. Had a large collection of &amp;ldquo;barrels&amp;rdquo; (as I used to call them), nowadays commonly known as capacitors, which I sheered off with pliers. It was a great activity for an impatient, ADHD young me.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Zero Point Security - Red Team Ops (CRTO) - Course Review</title>
+      <link>http://localhost:1313/posts/crto_review-2024/</link>
+      <pubDate>Fri, 11 Apr 2025 10:46:43 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/crto_review-2024/</guid>
+      
+      <description>&lt;h1 style=&#34;text-align:center&#34;&gt;Review of Zero Point Security&#39;s Red Team Ops Course&lt;/h1&gt;
+&lt;br&gt;
+&lt;div style=&#34;text-align:center&#34;&gt;&lt;img src=&#34;img3.png&#34;&gt;&lt;/div&gt;
+&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Zero Point Security&amp;rsquo;s Red Team Ops course is an excellent course for those looking to up their skills to that of a red teamer. It serves as an entry point for those looking to get familiar with the industry&amp;rsquo;s (most?) popular C2 framework, Cobalt Strike (CS).&lt;/p&gt;
+&lt;p&gt;The course covers a large amount of current-day pertinent content that will prepare you for effectively working within an Active Directory environment from both a beacon and an off-host perspective. From standing up your own CS team server, to performing Kerberos magic, and even modifying payloads to make them Defender-proof, the course has it all. At the very least, the course offers a great (fairly priced might I add) Active Directory playground for you to get familiar with Cobalt Strike and some AD-related attacks. Getting a license of CS for your own home lab may be slightly out of reach, as such, this course solves that issue for a fraction of the cost given it&amp;rsquo;s reasonably priced lab times:&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>GOAD - Game of Active Directory - Walkthrough</title>
       <link>http://localhost:1313/posts/goad_walkthrough/</link>
@@ -14,7 +84,11 @@
       
       <guid>http://localhost:1313/posts/goad_walkthrough/</guid>
       
-      <description>Using Ludus and GOAD To Create Active Directory Firing Range As a penetration tester, it is crucial to have a stable, easily deployable, and accessible lab in which you can test various attack methods, exploits, and more. I have, in the past, built home labs from scratch using VMWare and a bunch of VMs running simultaneously on an old laptop. While that works pretty well when you are starting out, it can quickly get convoluted and annoying to manage.</description>
+      <description>&lt;h1 style=&#34;text-align:center&#34;&gt;Using Ludus and GOAD To Create Active Directory Firing Range&lt;/h1&gt;
+&lt;div style=&#34;text-align:center&#34;&gt;
+    &lt;img src=&#34;img1.webp&#34;&gt;
+&lt;/div&gt;
+&lt;p&gt;As a penetration tester, it is crucial to have a stable, easily deployable, and accessible lab in which you can test various attack methods, exploits, and more. I have, in the past, built home labs from scratch using VMWare and a bunch of VMs running simultaneously on an old laptop. While that works pretty well when you are starting out, it can quickly get convoluted and annoying to manage.&lt;/p&gt;</description>
       
     </item>
     
@@ -25,7 +99,13 @@
       
       <guid>http://localhost:1313/posts/mitty_intro-2024/</guid>
       
-      <description>A Github Commit Bruteforce Tool used to find deleted or dereferenced commits! --&gt; Get Mitty Here &lt;-- The recent Defcon 2024 conference in Las Vegas hosted a Cloud Capture-The-Flag (CTF) event in which I participated with several of my work colleagues. I took on a couple of Git-related challenges as I never really interacted with Git from a CTF perspective but figured this would be a great way to learn more about Git and Github.</description>
+      <description>&lt;h1 style=&#34;text-align:center&#34;&gt;A Github Commit Bruteforce Tool used to find deleted or dereferenced commits!&lt;/h1&gt;
+&lt;div style=&#34;text-align:center&#34;&gt;
+    &lt;img src=&#34;img1.webp&#34;&gt;
+    &lt;br&gt;
+    &lt;h1&gt;&lt;a href=&#34;https://github.com/e-nzym3/mitty&#34;&gt; --&gt; Get Mitty Here &lt;--&lt;/a&gt;&lt;/h1&gt;
+&lt;/div&gt;
+&lt;p&gt;The recent Defcon 2024 conference in Las Vegas hosted a Cloud Capture-The-Flag (CTF) event in which I participated with several of my work colleagues. I took on a couple of Git-related challenges as I never really interacted with Git from a CTF perspective but figured this would be a great way to learn more about Git and Github.&lt;/p&gt;</description>
       
     </item>
     
@@ -36,7 +116,9 @@
       
       <guid>http://localhost:1313/posts/wardriver-pi_2024/</guid>
       
-      <description>A Guide To Building Your Own WarDriving/WiFi Assessment Raspberry Pi As penetration testers, we often have to travel onsite to perform various engagements. I recently was tasked with performing a wireless assessment for a client, but realized I did not want to walk around the client’s site with a laptop in hand, as that is just plain cumbersome. As such, I decided to put on my thinking hat, dust off some of the Raspberry Pi 3’s that I had laying around , and turn them into something useful that may just solve my immediate issue.</description>
+      <description>&lt;h1 style=&#34;text-align:center&#34;&gt;A Guide To Building Your Own WarDriving/WiFi Assessment Raspberry Pi&lt;/h1&gt;
+&lt;div style=&#34;text-align:center&#34;&gt;&lt;img src=&#34;img1.webp&#34;&gt;&lt;/div&gt;
+&lt;p&gt;As penetration testers, we often have to travel onsite to perform various engagements. I recently was tasked with performing a wireless assessment for a client, but realized I did not want to walk around the client’s site with a laptop in hand, as that is just plain cumbersome. As such, I decided to put on my thinking hat, dust off some of the Raspberry Pi 3’s that I had laying around , and turn them into something useful that may just solve my immediate issue.&lt;/p&gt;</description>
       
     </item>
     
@@ -47,8 +129,9 @@
       
       <guid>http://localhost:1313/posts/intro/</guid>
       
-      <description>Intro I have always been interested in things… many things. My mind is a constant torrent of ideas, questions, “hmm” thoughts. These often lead me on multi-hour research journeys. While learning many things can often seem like a good thing, it only is if you remember what you learned 2 or 3 days later.
-Due to this, note taking has become a big part of my life, at least for the things I’m planning to remember days, months, or years later.</description>
+      <description>&lt;h2 id=&#34;intro&#34;&gt;Intro&lt;/h2&gt;
+&lt;p&gt;I have always been interested in things… many things. My mind is a constant torrent of ideas, questions, “hmm” thoughts. These often lead me on multi-hour research journeys. While learning many things can often seem like a good thing, it only is if you remember what you learned 2 or 3 days later.&lt;/p&gt;
+&lt;p&gt;Due to this, note taking has become a big part of my life, at least for the things I’m planning to remember days, months, or years later. While my current note taking solution, the almighty Obsidian, is great for noting down concepts, tools’ usage, and techniques, it does not always serve as a best method for knowledge sharing. After all, reading somebody’s notes is like taking a small peep into their brain. And THIS brain is quite a unique one.&lt;/p&gt;</description>
       
     </item>
     
@@ -59,11 +142,14 @@ Due to this, note taking has become a big part of my life, at least for the thin
       
       <guid>http://localhost:1313/pages/about/</guid>
       
-      <description>Email: jack@enzym3.io
-LinkedIn: https://www.linkedin.com/in/jack-pytel/
-Hey!
-Jack here. I am the curious mind behind this blog.
-If you are wondering how I ended up with such an amazing handle, let me dispel the mystery for you. I was in need of picking a name for my personal Github page so I grabbed a nearest-to-me piece of paper with writing on it and just picked a word from the page. That has pretty much been my method for picking nicknames, email addresses, and what nots throughout my life: find the nearest piece of paper with writing on it (whether it’s a book, catalog, or manual), find a word, make it l33t, and roll with it.</description>
+      <description>&lt;img src=&#34;img1.jpg&#34; style=&#34;border-radius:50%; width: 20vw; height: 20vw; object-fit: cover; margin-left: auto; margin-right: auto; display: block&#34;&gt;
+&lt;div style=&#34;text-align: center;&#34;&gt;
+&lt;p&gt;Email: &lt;a href=&#34;mailto:jack@enzym3.io&#34;&gt;jack@enzym3.io&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;LinkedIn: &lt;a href=&#34;https://www.linkedin.com/in/jack-pytel/&#34;&gt;https://www.linkedin.com/in/jack-pytel/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Hey!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Jack&lt;/strong&gt; here. I am the curious mind behind this blog.&lt;/p&gt;
+&lt;p&gt;If you are wondering how I ended up with such an amazing handle, let me dispel the mystery for you. I was in need of picking a name for my personal Github page so I grabbed a nearest-to-me piece of paper with writing on it and just picked a word from the page. That has pretty much been my method for picking nicknames, email addresses, and what nots throughout my life: find the nearest piece of paper with writing on it (whether it’s a book, catalog, or manual), find a word, make it l33t, and roll with it. In this specific case, I believe it was a medical brochure that I have gotten from my doctor.&lt;/p&gt;</description>
       
     </item>
     

@@ -68,21 +68,25 @@
     </script>
 
 
-<meta name="generator" content="Hugo 0.123.7">
+<meta name="generator" content="Hugo 0.148.2">
 
     
-    <meta property="og:title" content="WarDriver Pi - Build Guide" />
-<meta property="og:description" content="A Guide To Building Your Own WarDriving/WiFi Assessment Raspberry Pi As penetration testers, we often have to travel onsite to perform various engagements. I recently was tasked with performing a wireless assessment for a client, but realized I did not want to walk around the client’s site with a laptop in hand, as that is just plain cumbersome. As such, I decided to put on my thinking hat, dust off some of the Raspberry Pi 3’s that I had laying around , and turn them into something useful that may just solve my immediate issue." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/posts/wardriver-pi_2024/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2024-08-01T13:08:25-05:00" />
-<meta property="article:modified_time" content="2024-08-01T13:08:25-05:00" />
-
+    <meta property="og:url" content="http://localhost:1313/posts/wardriver-pi_2024/">
+  <meta property="og:site_name" content="E-nzym3 Blog">
+  <meta property="og:title" content="WarDriver Pi - Build Guide">
+  <meta property="og:description" content="A Guide To Building Your Own WarDriving/WiFi Assessment Raspberry Pi As penetration testers, we often have to travel onsite to perform various engagements. I recently was tasked with performing a wireless assessment for a client, but realized I did not want to walk around the client’s site with a laptop in hand, as that is just plain cumbersome. As such, I decided to put on my thinking hat, dust off some of the Raspberry Pi 3’s that I had laying around , and turn them into something useful that may just solve my immediate issue.">
+  <meta property="og:locale" content="en_gb">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-08-01T13:08:25-05:00">
+    <meta property="article:modified_time" content="2024-08-01T13:08:25-05:00">
 
 
     
-    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="WarDriver Pi - Build Guide"/>
-<meta name="twitter:description" content="A Guide To Building Your Own WarDriving/WiFi Assessment Raspberry Pi As penetration testers, we often have to travel onsite to perform various engagements. I recently was tasked with performing a wireless assessment for a client, but realized I did not want to walk around the client’s site with a laptop in hand, as that is just plain cumbersome. As such, I decided to put on my thinking hat, dust off some of the Raspberry Pi 3’s that I had laying around , and turn them into something useful that may just solve my immediate issue."/>
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="WarDriver Pi - Build Guide">
+  <meta name="twitter:description" content="A Guide To Building Your Own WarDriving/WiFi Assessment Raspberry Pi As penetration testers, we often have to travel onsite to perform various engagements. I recently was tasked with performing a wireless assessment for a client, but realized I did not want to walk around the client’s site with a laptop in hand, as that is just plain cumbersome. As such, I decided to put on my thinking hat, dust off some of the Raspberry Pi 3’s that I had laying around , and turn them into something useful that may just solve my immediate issue.">
 
 
     
@@ -249,7 +253,7 @@ stroke-linejoin="round" class="feather feather-home">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt update
 </span></span><span class="line"><span class="cl">sudo apt upgrade
 </span></span></code></pre></div><p>Now, let’s install Kismet. There are multiple ways of getting Kismet installed; however, some may be better than others. For instance, compiling Kismet from source on a Pi may not be a good idea as the Pi does not have sufficient resources to perform such RAM-heavy operations. Doing so may lock up your Pi forcing you to power cycle it. As such, the better route is to install it from packages made available by Kismet Wireless. To do so, we will need to add their repo to our Pi.</p>
-<p><em>As of 08/2024, the following instructions are still working, if you are doing this in 2-3 years from now, you may need to refer to Kismet’s documentation for current instructions (<a href="https://www.kismetwireless.net/packages/)">https://www.kismetwireless.net/packages/)</a>.</em></p>
+<p><em>As of 08/2024, the following instructions are still working, if you are doing this in 2-3 years from now, you may need to refer to Kismet’s documentation for current instructions (<a href="https://www.kismetwireless.net/packages/%29">https://www.kismetwireless.net/packages/)</a>.</em></p>
 <p>Execute the following commands, in the order they are provided to install Kismet:</p>
 <pre tabindex="0"><code>wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key --quiet | gpg --dearmor | sudo tee /usr/share/keyrings/kismet-archive-keyring.gpg &gt; /dev/null
 echo &#39;deb [signed-by=/usr/share/keyrings/kismet-archive-keyring.gpg] https://www.kismetwireless.net/repos/apt/release/bookworm bookworm main&#39; | sudo tee /etc/apt/sources.list.d/kismet.list &gt; /dev/null

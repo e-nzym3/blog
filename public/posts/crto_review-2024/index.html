@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en-gb"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name">Zero Point Security - Red Team Ops (CRTO) - Course Review | E-nzym3 Blog</title>
+<meta property="og:title" content="Zero Point Security - Red Team Ops (CRTO) - Course Review | E-nzym3 Blog" />
+<meta name="twitter:title" content="Zero Point Security - Red Team Ops (CRTO) - Course Review | E-nzym3 Blog" />
+<meta itemprop="name" content="Zero Point Security - Red Team Ops (CRTO) - Course Review | E-nzym3 Blog" />
+<meta name="application-name" content="Zero Point Security - Red Team Ops (CRTO) - Course Review | E-nzym3 Blog" />
+<meta property="og:site_name" content="E-nzym3" />
+
+<meta name="description" content="Enzym3&#39;s Blog">
+<meta itemprop="description" content="Enzym3&#39;s Blog" />
+<meta property="og:description" content="Enzym3&#39;s Blog" />
+<meta name="twitter:description" content="Enzym3&#39;s Blog" />
+
+<meta property="og:locale" content="en-gb" />
+<meta name="language" content="en-gb" />
+
+  <link rel="alternate" hreflang="en-gb" href="http://localhost:1313/posts/crto_review-2024/" title="English" />
+
+
+
+
+
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=2025-04-11T10:46:43-0400 />
+    <meta property="article:published_time" content=2025-04-11T10:46:43-0400 />
+    <meta property="og:url" content="http://localhost:1313/posts/crto_review-2024/" />
+
+    
+    <meta property="og:article:author" content="Jack Pytel" />
+    <meta property="article:author" content="Jack Pytel" />
+    <meta name="author" content="Jack Pytel" />
+    
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "Zero Point Security - Red Team Ops (CRTO) - Course Review",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "2025-04-11",
+        "description": "",
+        "wordCount":  930 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "2025-04-11",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "E-nzym3 Blog"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.148.2">
+
+    
+    <meta property="og:url" content="http://localhost:1313/posts/crto_review-2024/">
+  <meta property="og:site_name" content="E-nzym3 Blog">
+  <meta property="og:title" content="Zero Point Security - Red Team Ops (CRTO) - Course Review">
+  <meta property="og:description" content="Review of Zero Point Security&#39;s Red Team Ops Course Overview Zero Point Security’s Red Team Ops course is an excellent course for those looking to up their skills to that of a red teamer. It serves as an entry point for those looking to get familiar with the industry’s (most?) popular C2 framework, Cobalt Strike (CS).
+The course covers a large amount of current-day pertinent content that will prepare you for effectively working within an Active Directory environment from both a beacon and an off-host perspective. From standing up your own CS team server, to performing Kerberos magic, and even modifying payloads to make them Defender-proof, the course has it all. At the very least, the course offers a great (fairly priced might I add) Active Directory playground for you to get familiar with Cobalt Strike and some AD-related attacks. Getting a license of CS for your own home lab may be slightly out of reach, as such, this course solves that issue for a fraction of the cost given it’s reasonably priced lab times:">
+  <meta property="og:locale" content="en_gb">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-11T10:46:43-04:00">
+    <meta property="article:modified_time" content="2025-04-11T10:46:43-04:00">
+
+
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Zero Point Security - Red Team Ops (CRTO) - Course Review">
+  <meta name="twitter:description" content="Review of Zero Point Security&#39;s Red Team Ops Course Overview Zero Point Security’s Red Team Ops course is an excellent course for those looking to up their skills to that of a red teamer. It serves as an entry point for those looking to get familiar with the industry’s (most?) popular C2 framework, Cobalt Strike (CS).
+The course covers a large amount of current-day pertinent content that will prepare you for effectively working within an Active Directory environment from both a beacon and an off-host perspective. From standing up your own CS team server, to performing Kerberos magic, and even modifying payloads to make them Defender-proof, the course has it all. At the very least, the course offers a great (fairly priced might I add) Active Directory playground for you to get familiar with Cobalt Strike and some AD-related attacks. Getting a license of CS for your own home lab may be slightly out of reach, as such, this course solves that issue for a fraction of the cost given it’s reasonably priced lab times:">
+
+
+    
+
+    <link rel="canonical" href="http://localhost:1313/posts/crto_review-2024/">
+    <link href="/style.min.11853a65c712c53bc35a0cbe994fcc1c688974209773c03c56caf25e138ea679.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-96x96.png">
+    <link rel="mask-icon" href="/icons/favicon.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="http://localhost:1313/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+</head>
+<body data-theme = "dark" class="notransition">
+
+<script src="/js/theme.js"></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="http://localhost:1313/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title>Home</title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/posts/">
+                        Posts
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/pages/about/">
+                        About
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">Zero Point Security - Red Team Ops (CRTO) - Course Review</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2025-04-11T10:46:43-04:00" itemprop="datePublished"> 11 Apr 2025 </time>
+                </div>
+                
+            </header>
+            
+    
+    <details class="toc" ZgotmplZ>
+        <summary><b>Table of Contents</b></summary>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#course-breakdown">Course Breakdown</a></li>
+    <li><a href="#exam-overview">Exam Overview</a>
+      <ul>
+        <li><a href="#exam-tips">Exam Tips</a></li>
+      </ul>
+    </li>
+    <li><a href="#closing-thoughts">Closing Thoughts</a></li>
+  </ul>
+</nav>
+    </details>
+            <div class="page-content">
+                <h1 style="text-align:center">Review of Zero Point Security's Red Team Ops Course</h1>
+<br>
+<div style="text-align:center"><img src="img3.png"></div>
+<h2 id="overview">Overview</h2>
+<p>Zero Point Security&rsquo;s Red Team Ops course is an excellent course for those looking to up their skills to that of a red teamer. It serves as an entry point for those looking to get familiar with the industry&rsquo;s (most?) popular C2 framework, Cobalt Strike (CS).</p>
+<p>The course covers a large amount of current-day pertinent content that will prepare you for effectively working within an Active Directory environment from both a beacon and an off-host perspective. From standing up your own CS team server, to performing Kerberos magic, and even modifying payloads to make them Defender-proof, the course has it all. At the very least, the course offers a great (fairly priced might I add) Active Directory playground for you to get familiar with Cobalt Strike and some AD-related attacks. Getting a license of CS for your own home lab may be slightly out of reach, as such, this course solves that issue for a fraction of the cost given it&rsquo;s reasonably priced lab times:</p>
+<div style="text-align:center"><img src="img1.png"></div>
+<p>I personally always struggled with understanding and appropriately conceptualizing Kerberos authentication in my head. Getting hands on with the various Kerberos exchanges and seeing how they interconnect with the testing workflow, helped me to finally solidify that knowledge.</p>
+<h2 id="course-breakdown">Course Breakdown</h2>
+<p>You can find the full course description <a href="https://training.zeropointsecurity.co.uk/courses/red-team-ops">here</a>. The course is structured in a way that teaches you attacks, tools, and concepts as you progressively move through the full attack chain. For instance, the first few chapters (post introduction) help you set up your team server, listeners, payloads, delivery methods, and more. This way, once you start exploiting within the lab environment, you have all the tools you need to gain, or maintain, access. Then you will move into conducting external recon, through which you progress into initial access. Once within the environment, the course really takes off teaching you further recon methods using non-Bloodhound utilities, host persistence methods, and host pillaging for credentials. From there on, it gets more in-depth with each subsequent attack, or escalation method, ultimately leading you to complete ownage of the whole environment.</p>
+<p>Ultimately, as the course recommends (and pretty much everybody else that has taken this course), you should re-run the entire (or portions) of the course with Defender enabled throughout the environment. This will serve as practice for the exam where each machine does have it enabled. But, once you build your C2 profile and modified binaries, you can copy these changes to your notes so that you do not have to do it all over again during the exam. You&rsquo;d just simply update the pertinent files with your modified code and generate your payloads. This will significantly speed up your setup during the exam!</p>
+<h2 id="exam-overview">Exam Overview</h2>
+<p>What I really enjoyed about the exam is that everything covered within the course is what you are tested on. You could technically pass the whole exam with just having your course materials open. There&rsquo;s no real gotchas or rabbit holes (if you are familiar with offsec, you know what I mean), just straight testing of your understanding of the material you just learned. The lab is very close to what the course lab is, but the machines have different ways of gaining access to them.</p>
+<p>You get 40 hours of lab time usage to complete the exam, you can start and stop the exam lab as you please, but you will naturally lose your beacons while doing so. As such, I recommend leaving good persistence on all the boxes you compromise. I ended up leaving the lab running overnight as I had sufficient time to finish it.</p>
+<p>The course requires you to get 6 flags to pass, but there&rsquo;s a total of 8. I highly recommend going for all of the flags to get the most out of the exam.</p>
+<p>Personally I got all the flags I needed to pass within ~6 hours of starting the exam. At which point I called it for the day and revisited the exam the next day to get the last two flags.</p>
+<div style="text-align:center"><img src="img2.png"></div>
+<h3 id="exam-tips">Exam Tips</h3>
+<p>There are certainly several topics that are used more than others during the exam. With that said, I would <strong>HIGHLY</strong> recommend that you practice using Rubeus and using the tickets you obtain through it, as you will be doing it very frequently.</p>
+<p>Another big thing I would urge you to practice is downloading and executing payloads on machines with Defender and AMSI enabled, through various means. Being able to quickly, and effectively, deploy your beacons will be a great quality of life improvement.</p>
+<p>The last tip I&rsquo;ll share with you is being careful and understanding your recon results. After compromising each machine, you will want to make sure you are running your recon to uncover further paths to either escalation or compromise of other machines within the network. Read it carefully, know what you should be on the lookout for (based on what the course taught you), and obviously write it all down.</p>
+<h2 id="closing-thoughts">Closing Thoughts</h2>
+<p>I very much enjoyed this course, which I can&rsquo;t say the same for many of the other courses I&rsquo;ve taken in my career. I think Zero Point is doing a great job of presenting pertinent content and granting you the ability to practice the taught subjects in a controlled lab environment. Due to this, I will highly consider taking the Red Team Ops II course which dives a bit deeper into red teaming and OPSEC safe practices. If you are interested in that course as well, look out for my review in the future!</p>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+<a href="https://github.com/e-nzym3" target="_blank" rel="noopener noreferrer me"
+    title="Github">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://x.com/pyteljack" target="_blank" rel="noopener noreferrer me"
+    title="X">
+    <svg viewBox="0 0 1200 1227" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path
+        d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z"/>
+</svg>
+</a>
+<a href="https://www.linkedin.com/in/jack-pytel/" target="_blank" rel="noopener noreferrer me"
+    title="Linkedin">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect x="2" y="9" width="4" height="12"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        © 2025 Jack Pytel.
+        Everything contained on this blog is purely for educational purposes only!
+    </small>
+</footer><a href="#" title="Go to top" id="totop">
+    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" stroke="currentColor" viewBox="0 96 960 960">
+    <path d="M283 704.739 234.261 656 480 410.261 725.739 656 677 704.739l-197-197-197 197Z"/>
+</svg>
+
+</a>
+
+
+    
+
+
+
+
+    
+    
+        
+    
+
+    
+    
+        
+    
+
+
+
+    
+    <script async src="http://localhost:1313/js/main.js" ></script>
+
+    
+
+</body>
+</html>
