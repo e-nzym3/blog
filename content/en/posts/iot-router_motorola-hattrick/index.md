@@ -1,6 +1,6 @@
 +++
-title = 'IoT: Motorola Modem Hattrick (part 1)'
-date = 2025-10-01T21:22:05-04:00
+title = 'IoT: Motorola Modem Hat-trick - Part 1'
+date = 2025-10-31T01:00:00-04:00
 draft = false
 +++
 
